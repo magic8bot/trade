@@ -23,38 +23,45 @@ export class Service {
   }
 
   private static async tick() {
-    const message = await smq.receiveMessage<Message>(Channel.SyncTrades)
-    if (message) Service.processMessage(message)
-
     await sleep(5000)
 
-    Service.tick()
+    const resp = await smq.receiveMessage<Message>(Channel.SyncTrades)
+    if (!resp.message) return Service.tick()
+
+    const shouldDelete = await Service.processMessage(resp.message)
+    if (shouldDelete) smq.deleteMessage(Channel.SyncTrades, resp.id)
   }
 
-  private static processMessage(message: Message) {
+  private static async processMessage(message: Message) {
     const { exchange, symbol, action } = message
 
-    if (action === 'start') Service.start(exchange, symbol)
-    else if (action === 'stop') Service.stop(exchange, symbol)
+    if (action === 'start') return Service.start(exchange, symbol)
+    else if (action === 'stop') return Service.stop(exchange, symbol)
+
+    return true
   }
 
   private static async start(exchange: string, symbol: string) {
     const idStr = Service.makeIdStr(exchange, symbol)
     const exchangeConfig = await ExchangeModel.load(exchange)
 
-    if (Service.syncers.has(idStr)) return
+    if (Service.syncers.has(idStr)) return true
 
     exchangeProvider.addExchange(exchangeConfig)
     Service.syncers.set(idStr, new TradeEngine(exchangeProvider, exchange, exchangeConfig.tradePollInterval))
     Service.syncers.get(idStr).start(symbol, 1)
+
+    return true
   }
 
   private static stop(exchange: string, symbol: string) {
     const idStr = Service.makeIdStr(exchange, symbol)
-    if (!Service.syncers.has(idStr)) return
+    if (!Service.syncers.has(idStr)) return false
 
     Service.syncers.get(idStr).stop()
     Service.syncers.delete(idStr)
+
+    return true
   }
 
   private static makeIdStr(exchange: string, symbol: string) {

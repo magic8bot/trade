@@ -1,6 +1,6 @@
 {
   "name": "@magic8bot/trade",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cryptocurrency trading bot",
   "bugs": "https://github.com/magic8bot/trade/issues",
   "license": "MIT",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@magic8bot/adapters": "^1.0.0",
     "@magic8bot/db": "^2.0.6",
-    "@magic8bot/smq": "^2.0.1",
+    "@magic8bot/smq": "^2.1.0",
     "dotenv": "^8.2.0",
     "ts-node": "^9.1.1"
   },

@@ -41,10 +41,10 @@
     dotenv "^8.2.0"
     mongodb "^3.6.3"
 
-"@magic8bot/smq@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@magic8bot/smq/-/smq-2.0.1.tgz#86c1802e0ef32c5211b7b7626f1568c30fec41d3"
-  integrity sha512-nnkWzkbyUDX+KNSPXJc8bg3fGxfsgCQ8QbSgdpd1QoOVaYLrYvulOQHs94gcwxyOgar0SOJ4mCApWk+sbEX8Ww==
+"@magic8bot/smq@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@magic8bot/smq/-/smq-2.1.0.tgz#d023dc531102eaa077b16913b6e0eeb32ff781df"
+  integrity sha512-2sN0wr4AIJsVEvLLDZS4g/UDoQaWKp46cjki5Ys/X83q+oic4ygFlMC+tzytTJQtUhiDLQBKIgOSgCtF9yluBw==
   dependencies:
     dotenv "^8.2.0"
     redis "^3.0.2"
