@@ -1,7 +1,7 @@
 import { ExchangeProvider } from '@magic8bot/adapters'
-import { MarkerService, TradeService } from '../services'
+import { sleep, asyncNextTick, chunkedMax, chunkedMin } from '@magic8bot/utils'
 
-import { sleep, asyncNextTick, chunkedMax, chunkedMin } from '../utils'
+import { MarkerService, TradeService } from '../services'
 
 enum SYNC_STATE {
   STOPPED,

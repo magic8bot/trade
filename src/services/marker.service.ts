@@ -1,7 +1,6 @@
 import { Trade } from 'ccxt'
 import { StoreOpts, MarkerModel, Marker } from '@magic8bot/db'
-
-import { chunkedMax, chunkedMin } from '../utils/math'
+import { chunkedMax, chunkedMin } from '@magic8bot/utils'
 
 export class MarkerService {
   public static async getNextBackMarker(storeOpts: StoreOpts) {

@@ -1,9 +1,9 @@
 import { ExchangeProvider } from '@magic8bot/adapters'
 import { dbDriver, ExchangeModel } from '@magic8bot/db'
 import { Channel, smq } from '@magic8bot/smq'
+import { sleep } from '@magic8bot/utils'
 
 import { TradeEngine } from './engine'
-import { sleep } from './utils'
 
 interface Message {
   exchange: string
